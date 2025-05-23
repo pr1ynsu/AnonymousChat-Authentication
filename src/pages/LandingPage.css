@@ -27,7 +27,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0.2, 0.2, 0.2, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
   z-index: 1;
 }
@@ -39,32 +39,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100%;
   padding: 40px 20px;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: red;
   text-align: center;
-  margin-top: 30px;
-  margin-bottom: auto;
+  margin-bottom: 30px;
   font-weight: 600;
-  letter-spacing: 3px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .login-box {
   background-color: rgba(30, 30, 30, 0.4);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
-  width: 450px;
+  width: 90%;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .input-field {
@@ -102,7 +103,6 @@
   color: rgb(147, 19, 19);
   cursor: pointer;
   text-decoration: underline;
-  
 }
 
 .register-link:hover {
@@ -119,22 +119,70 @@
   justify-content: center;
   height: 100%;
   color: rgb(255, 0, 0);
-  padding: 1px 20px;
+  padding: 20px;
   text-align: center;
 }
 
 .subtitle {
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   font-weight: 600;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .poetic-text {
   max-width: 800px;
-  font-size: 18px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.6;
   color: rgb(255, 0, 0);
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 2rem;
+  }
+
+  .poetic-text {
+    font-size: 15px;
+  }
+
+  .login-box {
+    padding: 20px;
+  }
+
+  .input-field,
+  .login-button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.8rem;
+  }
+
+  .poetic-text {
+    font-size: 14px;
+  }
+
+  .login-box {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .input-field,
+  .login-button {
+    font-size: 13px;
+  }
 }

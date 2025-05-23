@@ -125,3 +125,49 @@
   color: red;
   text-align: center;
 }
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .register-container,
+  .guideline-box {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .register-button,
+  .input-field {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .charon-name-box {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .register-button,
+  .input-field {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .agree-checkbox {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .charon-name-box {
+    font-size: 13px;
+  }
+}
