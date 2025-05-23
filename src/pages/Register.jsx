@@ -55,7 +55,7 @@ const Register = () => {
       localStorage.setItem("token", user.accessToken);
 
       // Navigate to loading page
-      navigate("/loading");
+      navigate("/");
     } catch (err) {
       setError("Registration failed: " + err.message);
     }
