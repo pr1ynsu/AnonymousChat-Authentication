@@ -1,17 +1,50 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../firebase'; // make sure db (Firestore) is initialized in firebase.js
+import { doc, getDoc } from 'firebase/firestore';
 import './LandingPage.css';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const audioRef = useRef(null);
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
   useEffect(() => {
     const audio = audioRef.current;
-    if (audio) {
-      audio.play().catch(() => {});
-    }
+    if (audio) audio.play().catch(() => {});
   }, []);
+
+  const handleSignIn = async () => {
+    setErrorMsg('');
+    if (!email || !password) {
+      setErrorMsg('Please enter both email and password.');
+      return;
+    }
+    try {
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      const token = await res.user.getIdToken();
+      localStorage.setItem('token', token);
+
+      // Fetch Charon name from Firestore
+      const docRef = doc(db, 'charons', res.user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const charonName = docSnap.data().charonName;
+        localStorage.setItem('charonName', charonName);
+      } else {
+        localStorage.setItem('charonName', 'Charon ?'); // fallback
+      }
+
+      navigate('/forum'); // Redirect to forum
+    } catch (err) {
+      setErrorMsg('Login failed: ' + err.message);
+    }
+  };
 
   return (
     <div className="landing-container">
@@ -27,27 +60,28 @@ const LandingPage = () => {
 
           <div className="login-box">
             <input
-              type="text"
-              placeholder="Username"
+              type="email"
+              placeholder="Email"
               className="input-field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               placeholder="Password"
               className="input-field"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <button
-              onClick={() => navigate('/signin')}
-              className="login-button"
-            >
+            {errorMsg && <p className="error-message">{errorMsg}</p>}
+
+            <button onClick={handleSignIn} className="login-button">
               Sign In
             </button>
+
             <p className="register-text">
               Don’t have an account?{' '}
-              <span
-                className="register-link"
-                onClick={() => navigate('/register')}
-              >
+              <span className="register-link" onClick={() => navigate('/register')}>
                 Register
               </span>
             </p>

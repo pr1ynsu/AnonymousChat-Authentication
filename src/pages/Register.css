@@ -1,0 +1,127 @@
+/* Background and container layout */
+.register-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Serif';
+}
+
+.background-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.register-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0.2, 0.2, 0.2, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+/* Slide Transition */
+.register-wrapper {
+  position: relative;
+  z-index: 2;
+  height: 200vh; /* two full-screen panels stacked */
+  transition: transform 1s ease;
+  transform: translateY(0);
+}
+
+.register-wrapper.slide-up {
+  transform: translateY(-100vh);
+}
+
+/* Top screen (guidelines) */
+.guideline-screen, .form-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Shared box styles */
+.register-container, .guideline-box {
+  background-color: rgba(30, 30, 30, 0.4);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  max-width: 500px;
+  color: red;
+  text-align: center;
+  font-family: 'Serif';
+}
+
+/* Form Fields */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: red;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Buttons */
+.register-button {
+  background: rgb(147, 19, 19);
+  color: black;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.register-button:hover {
+  background: red;
+}
+
+/* Misc styles */
+.guideline-box {
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+}
+
+.agree-checkbox {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: red;
+}
+
+.charon-name-box {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px dashed #aaa;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #00e6e6;
+}
+
+.error-message {
+  color: #ff5e5e;
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+  color: red;
+  text-align: center;
+}
